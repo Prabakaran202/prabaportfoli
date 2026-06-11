@@ -1,146 +1,578 @@
-tr<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Praba — Multilingual Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Portfolio of Prabakaran (Praba), a Backend Developer and BCA student specializing in Python, FastAPI, compiler design, and Linux." />
+  <title>Praba — Backend Developer Portfolio</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#7dd3fc;--glass:rgba(255,255,255,0.04)}
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#071024 0%, #0b1430 100%);}
-    .container{max-width:1000px;margin:40px auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
-    .logo{display:flex;gap:12px;align-items:center}
-    .avatar{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#4ade80,#60a5fa);display:flex;align-items:center;justify-content:center;color:#04233a;font-weight:800}
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;background:var(--card);padding:28px;border-radius:16px;box-shadow:0 6px 30px rgba(2,6,23,0.6)}
-    .hero h1{margin:0;font-size:28px}
-    .hero p{color:var(--muted);margin-top:8px;line-height:1.5}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#002233;font-weight:700;text-decoration:none;margin-top:14px}
-    .badges{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
-    .badge{background:var(--glass);padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
-    .skills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    .skill{padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);font-weight:600;color:var(--muted)}
-    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
-    .proj-title{font-weight:700}
-    footer{margin-top:28px;color:var(--muted);text-align:center}
-    @media (max-width:880px){.hero{grid-template-columns:1fr;}.avatar{width:48px;height:48px}}
-    .inline-link{color:var(--accent);text-decoration:none;font-weight:700}
-    .contact-form{display:grid;gap:8px}
-    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    .row{display:flex;gap:12px}
-    .row > *{flex:1}
-    .theme-toggle{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:6px 8px;border-radius:8px;color:var(--muted)}
+    /* --- ADVANCED CSS VARIABLES --- */
+    :root {
+      --bg-dark: #050b14;
+      --bg-light: #0a1324;
+      --card-bg: rgba(15, 27, 45, 0.4);
+      --card-hover: rgba(19, 34, 56, 0.8);
+      --text: #f4f7fb;
+      --muted: #8b9eb3;
+      --accent: #38bdf8;
+      --accent-secondary: #818cf8;
+      --gradient-text: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-glow: rgba(56, 189, 248, 0.3);
+      --glow-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    /* Text Selection */
+    ::selection { background: var(--accent-secondary); color: white; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(56, 189, 248, 0.04), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(129, 140, 248, 0.04), transparent 25%);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* --- ANIMATIONS --- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .animate-up {
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+      padding: 30px 0;
+    }
+
+    /* --- HEADER & NAV --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+      padding: 15px 25px;
+      background: rgba(10, 19, 36, 0.5);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .logo:hover img {
+      border-color: var(--accent);
+      box-shadow: var(--glow-shadow);
+    }
+
+    .logo h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+    .logo p { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+    nav { display: flex; gap: 25px; }
+    
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: var(--gradient-text);
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    nav a:hover { color: white; }
+    nav a:hover::after { width: 100%; }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 60px 50px;
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.5;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(40px, 5vw, 56px);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .hero-text h1 span {
+      background: var(--gradient-text);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 4s linear infinite;
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 35px;
+      font-size: 17px;
+      max-width: 90%;
+    }
+
+    /* --- BUTTONS --- */
+    .buttons { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--bg-dark);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.05);
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      text-align: center;
+      position: relative;
+    }
+
+    /* Glow effect behind image */
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 250px; height: 250px;
+      background: var(--accent);
+      filter: blur(100px);
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 340px;
+      border-radius: 30px;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* --- SECTIONS & CARDS --- */
+    .section { margin-top: 100px; }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 40px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 40px; height: 4px;
+      background: var(--accent);
+      bottom: -10px; left: 0;
+      border-radius: 2px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Card Top Accent Line */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 2px;
+      background: var(--gradient-text);
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: var(--card-hover);
+      border-color: var(--border-glow);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3), var(--glow-shadow);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card h3 { margin-bottom: 15px; font-size: 20px; font-weight: 700; }
+    .card p { color: var(--muted); line-height: 1.7; font-size: 15px; margin-bottom: 20px; }
+
+    .project-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: 0.3s;
+    }
+
+    .project-link:hover { color: white; gap: 8px; } /* Arrow moves right on hover */
+
+    /* --- SKILLS --- */
+    .skills { display: flex; flex-wrap: wrap; gap: 15px; }
+
+    .skill {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 20px;
+      border-radius: 12px;
+      color: #d8e6f3;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .skill:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--accent);
+      color: white;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: var(--glow-shadow);
+    }
+
+    /* --- CONTACT --- */
+    .contact-box {
+      background: var(--card-bg);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-item span {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .contact-item a, .contact-item p {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .contact-item a:hover { color: var(--accent); }
+
+    footer {
+      margin-top: 100px;
+      text-align: center;
+      color: var(--muted);
+      padding-bottom: 40px;
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 40px;
+    }
+
+    /* --- RESPONSIVE DESIGN --- */
+    @media(max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 40px 25px;
+      }
+      .hero::before { display: none; }
+      .hero-text p { max-width: 100%; margin-left: auto; margin-right: auto; }
+      .buttons { justify-content: center; }
+      .hero-image img { max-width: 280px; margin-top: 20px; }
+      header { padding: 15px; }
+    }
+
+    @media(max-width: 600px) {
+      header { flex-direction: column; gap: 15px; border-radius: 15px; position: relative; top: 0; }
+      nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
+      .section-title { font-size: 28px; }
+      .contact-box { padding: 25px; grid-template-columns: 1fr; }
+    }
   </style>
 </head>
+
 <body>
+
   <div class="container">
-    <header>
+
+    <header class="animate-up delay-1">
       <div class="logo">
-        <div class="avatar">P</div>
+        <img src="21671.png" alt="Praba">
         <div>
-          <div style="font-weight:800" id="name">Prabakaran (Praba)</div>
-          <div style="font-size:13px;color:var(--muted)" id="role">Backend Developer • BCA Student • API & Python</div>
+          <h2>Prabakaran</h2>
+          <p>Backend Developer • BCA</p>
         </div>
       </div>
       <nav>
-        <a href="#about" id="nav-about">About</a>
-        <a href="#projects" id="nav-projects">Projects</a>
-        <a href="#contact" id="nav-contact">Contact</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <section class="hero card">
-      <div>
-        <h1 id="hero-title">Hello — I'm Prabakaran (Praba)</h1>
-        <p id="hero-desc">I am a backend developer passionate about building applications using Python, FastAPI, Node.js, and SQL. Interested in computer science and API development.</p>
-        <a class="btn" href="#contact" id="hero-btn">Contact Me</a>
-
-        <div class="badges">
-          <div class="badge">BCA Student</div>
-          <div class="badge">Backend</div>
-          <div class="badge">FastAPI</div>
-          <div class="badge">Python</div>
-        </div>
-
-        <div style="margin-top:18px">
-          <div class="card">
-            <strong>Skills</strong>
-            <div class="skills">
-              <div class="skill">Python</div>
-              <div class="skill">FastAPI</div>
-              <div class="skill">Node.js</div>
-              <div class="skill">SQL</div>
-              <div class="skill">Git</div>
-            </div>
-          </div>
+    <section class="hero animate-up delay-2">
+      <div class="hero-text">
+        <h1>Hi, I'm <span>Praba</span><br>Backend Developer</h1>
+        <p>
+          Self-taught backend developer and BCA student passionate about 
+          Python, FastAPI, Linux, API development, compiler design, 
+          and open-source projects.
+        </p>
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
         </div>
       </div>
-
-      <aside style="display:flex;flex-direction:column;gap:12px;align-items:center">
-        <div style="width:100%;text-align:center">
-          <img src="https://via.placeholder.com/300x200?text=Project+Screenshot" alt="project" style="width:100%;border-radius:10px;display:block">
-        </div>
-        <div class="card" style="width:100%;text-align:left">
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div>
-              <div style="font-weight:800">Open-source Task API</div>
-              <div style="font-size:13px;color:var(--muted)">FastAPI + SQLite — CRUD, Auth, Tests</div>
-            </div>
-            <a class="inline-link" href="#projects">View</a>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section id="about" style="margin-top:22px">
-      <div class="card" style="padding:18px">
-        <h3 id="about-title">About Me</h3>
-        <p style="color:var(--muted)" id="about-desc">I am a BCA student with background in Python, API development, and backend systems. I enjoy programming, building automation, REST/GraphQL APIs, and database design.</p>
+      <div class="hero-image">
+        <img src="21671.png" alt="Prabakaran">
       </div>
     </section>
 
-    <section id="projects" style="margin-top:18px">
-      <h3 style="color:#dff6ff" id="projects-title">Projects</h3>
-      <div class="projects">
+    <section class="section animate-up delay-3" id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="card">
+        <p style="margin: 0;">
+          I am a BCA student from Tamil Nadu with a strong interest in 
+          backend systems, Linux tools, APIs, and programming language development. 
+          I enjoy building scalable backend applications using FastAPI, 
+          PostgreSQL, SQLAlchemy, and modern developer tools.
+        </p>
+      </div>
+    </section>
+
+    <section class="section animate-up delay-4" id="projects">
+      <h2 class="section-title">Projects</h2>
+      <div class="cards">
         <div class="card">
-          <div class="proj-title">Task Manager API</div>
-          <div style="color:var(--muted);margin-top:8px">FastAPI, SQLite, JWT Auth, Tests</div>
-          <div style="margin-top:12px"><a class="inline-link" href="#">GitHub</a></div>
+          <div>
+            <h3>Tamizhi Language</h3>
+            <p>Built a compiled programming language with Tamil syntax using LLVM and Clang infrastructure.</p>
+          </div>
+          <a href="https://github.com/Prabakaran202" target="_blank" class="project-link">View Repo &rarr;</a>
         </div>
+
         <div class="card">
-          <div class="proj-title">Event Management System</div>
-          <div style="color:var(--muted);margin-top:8px">Python backend for events, bookings</div>
-          <div style="margin-top:12px"><a class="inline-link" href="#">GitHub</a></div>
+          <div>
+            <h3>bdh-fastapi-new</h3>
+            <p>Created a FastAPI scaffolding CLI tool published on PyPI with thousands of downloads.</p>
+          </div>
+          <a href="https://pypi.org/project/bdh-fastapi-new/" target="_blank" class="project-link">View on PyPI &rarr;</a>
         </div>
+
         <div class="card">
-          <div class="proj-title">HTPY / HowTo Language (Prototype)</div>
-          <div style="color:var(--muted);margin-top:8px">Language research & compiler components</div>
-          <div style="margin-top:12px"><a class="inline-link" href="#">Docs</a></div>
+          <div>
+            <h3>BDH Linux</h3>
+            <p>Open-source Linux developer CLI tool available on PyPI and Arch Linux AUR repository.</p>
+          </div>
+          <a href="https://github.com/Prabakaran202" target="_blank" class="project-link">View Repo &rarr;</a>
+        </div>
+
+        <div class="card">
+          <div>
+            <h3>AI API Builder</h3>
+            <p>Multi-model AI gateway using FastAPI with provider fallback between Groq and Gemini APIs.</p>
+          </div>
+          <a href="https://github.com/Prabakaran202" target="_blank" class="project-link">View Repo &rarr;</a>
         </div>
       </div>
     </section>
 
-    <section id="contact" style="margin-top:18px">
-      <div class="card" style="padding:18px">
-        <h3 id="contact-title">Contact</h3>
-        <p style="color:var(--muted)" id="contact-desc">Feel free to reach out for work or collaboration.</p>
-        <form class="contact-form" action="mailto:your.email@example.com" method="post" enctype="text/plain">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <textarea name="message" rows="4" placeholder="Message"></textarea>
-          <div style="display:flex;gap:8px;margin-top:8px">
-            <button type="submit" class="btn">Send Email</button>
-            <button type="button" class="theme-toggle" onclick="copyEmail()">Copy Email</button>
-          </div>
-        </form>
+    <section class="section" id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills">
+        <div class="skill">Python</div>
+        <div class="skill">FastAPI</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">Node.js</div>
+        <div class="skill">SQLAlchemy</div>
+        <div class="skill">PostgreSQL</div>
+        <div class="skill">Linux</div>
+        <div class="skill">GitHub Actions</div>
+        <div class="skill">REST APIs</div>
+        <div class="skill">JWT Auth</div>
+        <div class="skill">Compiler Design</div>
+        <div class="skill">Git</div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2 class="section-title">Let's Connect</h2>
+      <div class="contact-box">
+        <div class="contact-item">
+          <span>Name</span>
+          <p>Prabakaran P</p>
+        </div>
+        <div class="contact-item">
+          <span>Email</span>
+          <a href="mailto:prabakaran20020430@gmail.com">prabakaran20020430@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span>Phone</span>
+          <a href="tel:+916381952844">+91 6381952844</a>
+        </div>
+        <div class="contact-item">
+          <span>Socials</span>
+          <a href="https://github.com/Prabakaran202" target="_blank">GitHub Profile</a>
+          <a href="https://www.linkedin.com/in/prabakaran-p" target="_blank">LinkedIn Profile</a>
+        </div>
       </div>
     </section>
 
     <footer>
-      <div>Prabakaran</div>
-</footer>
-</div></body>
+      © 2026 Prabakaran • Built with ❤️ and Code
+    </footer>
+
+  </div>
+
+</body>
 </html>
