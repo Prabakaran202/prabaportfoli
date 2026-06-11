@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prabakaran P - Backend Developer Resume</title>
+    <style>
+        /* --- Base Styles --- */
+        body {
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #000;
+            margin: 0;
+            padding: 30px;
+            line-height: 1.5;
+        }
+
+        /* --- Resume Container (A4 Proportions) --- */
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 50px 60px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+
+        /* --- Header Section --- */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 5px 0 8px 0;
+            color: #333;
+        }
+
+        .header p {
+            font-size: 13px;
+            margin: 0;
+            color: #444;
+        }
+
+        .header a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+            color: #007BFF;
+        }
+
+        /* --- Section Titles --- */
+        h3 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding-bottom: 4px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        /* --- Paragraphs & Lists --- */
+        p {
+            font-size: 13px;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-top: 0;
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        li {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        /* --- Layout Utility --- */
+        .flex-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .project-stack {
+            font-weight: normal;
+            font-style: italic;
+        }
+
+        .skill-category {
+            font-weight: bold;
+        }
+
+        /* --- PDF Download Button Style --- */
+        .download-btn {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 30px auto;
+            padding: 12px 24px;
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* --- Print Specific CSS --- */
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+                margin: 0;
+            }
+            .resume-container {
+                box-shadow: none;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            .download-btn {
+                display: none;
+            }
+            /* Avoid page breaks inside sections */
+            h3, .flex-row, .project-title {
+                page-break-after: avoid;
+            }
+            ul, p {
+                page-break-inside: avoid;
+            }
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Download Button -->
+    <button class="download-btn" onclick="window.print()">📥 Download / Save as PDF</button>
+
+    <div class="resume-container">
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>PRABAKARAN P</h1>
+            <h2>Backend Developer</h2>
+            <p>
+                Tamil Nadu | 
+                <a href="tel:6381952844">6381952844</a> | 
+                <a href="mailto:prabakaran20020430@gmail.com">prabakaran20020430@gmail.com</a>
+            </p>
+            <p>
+                GitHub: <a href="https://github.com/Prabakaran202">github.com/Prabakaran202</a> | 
+                LinkedIn: <a href="https://linkedin.com/in/prabakaran-p">linkedin.com/in/prabakaran-p</a>
+            </p>
+        </div>
+
+        <!-- Objective -->
+        <h3>OBJECTIVE</h3>
+        <p>
+            Self-taught backend developer and BCA student with hands-on experience building REST APIs, CLI tools, and full-stack web applications. Passionate about Python, FastAPI, and Linux systems. Looking for an entry-level backend developer role to contribute to real-world projects and grow within a development team.
+        </p>
+
+        <!-- Education -->
+        <h3>EDUCATION</h3>
+        <div class="flex-row">
+            <div style="font-weight: bold; font-size: 13px;">Bachelor of Computer Applications (BCA)</div>
+            <div style="font-size: 13px;">2023-2027 (Expected)</div>
+        </div>
+        <p style="margin-bottom: 15px;">Bharathidasan University, Tamil Nadu</p>
+
+        <!-- Technical Skills -->
+        <h3>TECHNICAL SKILLS</h3>
+        <ul>
+            <li><span class="skill-category">Languages:</span> Python (Advanced), JavaScript, Bash Scripting, HTML5, CSS3, C (Compiler Development)</li>
+            <li><span class="skill-category">Backend:</span> FastAPI, SQLAlchemy, REST API Design, JWT Authentication</li>
+            <li><span class="skill-category">Databases:</span> PostgreSQL, Supabase</li>
+            <li><span class="skill-category">Tools & DevOps:</span> Git, GitHub, GitHub Actions, Linux (Arch Linux), CI/CD Pipelines</li>
+            <li><span class="skill-category">Deployment:</span> Render, Netlify, PyPI, AUR (Arch User Repository)</li>
+        </ul>
+
+        <!-- Projects -->
+        <h3>PROJECTS</h3>
+        
+        <div class="project-title">Tamizhi - Tamil-Syntax Programming Language <span class="project-stack">| C, LLVM, Clang</span></div>
+        <ul>
+            <li>Designed and built a compiled programming language with Tamil-syntax keywords targeting C-level performance.</li>
+            <li>Implemented a complete compiler pipeline: lexer, parser, AST, and LLVM-based code generation with O2 optimization.</li>
+            <li>Resolved critical issues including pass manager migration, builder repositioning, and linker symbol conflicts.</li>
+            <li>Set up GitHub Actions workflows for automated builds and release distribution.</li>
+        </ul>
+
+        <div class="project-title">bdh-fastapi-new - FastAPI Project Scaffolding CLI <span class="project-stack">| Python, FastAPI</span></div>
+        <ul>
+            <li>Published a PyPI CLI tool for FastAPI project scaffolding - received 3,600+ downloads in the first week.</li>
+            <li>Implemented --ai and --admin flags for Al-ready and admin-ready project templates.</li>
+            <li>Configured automated PyPI deployment using GitHub Actions Trusted Publisher workflows.</li>
+        </ul>
+
+        <div class="project-title">BDH Linux - Developer CLI Tool <span class="project-stack">| Python, Bash</span></div>
+        <ul>
+            <li>Built an open-source CLI tool for Linux workflow automation targeting backend developers.</li>
+            <li>Published to both PyPI and the Arch Linux AUR (yay -S bdh-linux), managing full PKGBUILD lifecycle.</li>
+        </ul>
+
+        <div class="project-title">AI API Builder - Multi-Model Al Gateway <span class="project-stack">| FastAPI, Groq, Gemini</span></div>
+        <ul>
+            <li>Built and deployed a FastAPI-based Al gateway with automatic provider fallback between Groq and Gemini.</li>
+            <li>Designed RESTful endpoints with response normalization across multiple LLM providers.</li>
+        </ul>
+
+        <div class="project-title">4S Mobiles - Business Management Web App <span class="project-stack">| React, FastAPI, PostgreSQL</span></div>
+        <ul>
+            <li>Developed a full-stack customer service management platform for a retail business.</li>
+            <li>Implemented JWT authentication, Supabase integration, and deployed backend on Render with frontend on Netlify.</li>
+        </ul>
+
+        <!-- Achievements -->
+        <h3>ACHIEVEMENTS & HIGHLIGHTS</h3>
+        <ul style="margin-bottom: 0;">
+            <li>3,600+ PyPl downloads for bdh-fastapi-new within the first week of launch.</li>
+            <li>Built and published packages across PyPI and Arch Linux AUR ecosystems.</li>
+            <li>Developed a working compiler using LLVM infrastructure targeting ARM64 and x86.</li>
+            <li>Hands-on experience with Linux (Arch Linux) as daily development environment.</li>
+        </ul>
+
+    </div>
+
+</body>
+</html>
